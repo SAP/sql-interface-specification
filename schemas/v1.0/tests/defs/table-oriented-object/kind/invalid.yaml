@@ -1,0 +1,13 @@
+fail:
+  - instance: /objects/tableOriented/OBJECT/kind
+    schema: pattern
+    detail: '^(view|parameterized-view|table|table-function)$'
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    OBJECT:
+      kind: a kind #!
+      columns: ...

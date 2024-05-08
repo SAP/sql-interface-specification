@@ -1,0 +1,17 @@
+fail:
+  - instance: /objects/databases/DATABASE_1/tableOriented
+    schema: type
+    detail: object
+  - instance: /objects/databases/DATABASE_2/tableOriented
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  databases:
+    DATABASE_1:
+      tableOriented: a string #!
+    DATABASE_2:
+      tableOriented: a string #!

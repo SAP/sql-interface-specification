@@ -1,0 +1,19 @@
+fail:
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type/array
+    schema: unevaluatedProperties
+    message: must not have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            array:
+              type: ...
+              length: ...
+              foo: ... #!

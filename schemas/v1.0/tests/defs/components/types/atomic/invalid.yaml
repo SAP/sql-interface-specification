@@ -1,0 +1,21 @@
+fail:
+  - instance: /components/types/atomic/T_ATOMIC
+    schema: required
+    detail: atomic
+  - instance: /components/types/atomic/T_ATOMIC
+    schema: unevaluatedProperties
+    message: must NOT have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    atomic:       # \
+      T_ATOMIC:   # !=
+        array:    # /
+          type:
+            atomic:
+              name: INTEGER
+          length: 10

@@ -1,0 +1,22 @@
+fail:
+  - instance: /objects/tableOriented/A~1VIEW/columns/0/type/$ref
+    detail: '#/components/types/atomic/NVARCHAR~1255'
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    "A/VIEW": #!
+      kind: view
+      columns:
+        - name: COLUMN_A
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR~1255' #! "NVARCHAR/255"
+components:
+  types:
+    atomic:
+      NVARCHAR_255: #!
+        atomic:
+          name: NVARCHAR
+          length: 255

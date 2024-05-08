@@ -1,0 +1,20 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    structure:     # \
+      T_STRUCT:    # =
+        structure: # /
+          fields:
+            - name: FIELD1
+              type:
+                atomic:
+                  name: INTEGER
+            - name: FIELD2
+              type:
+                atomic:
+                  name: INTEGER

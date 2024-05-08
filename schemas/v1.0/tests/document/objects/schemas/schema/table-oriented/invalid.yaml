@@ -1,0 +1,13 @@
+fail:
+  - instance: /objects/schemas/SCHEMA_1/tableOriented/A_TABLE
+    schema: required
+    detail: columns
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  schemas:
+    SCHEMA_1:
+      tableOriented:
+        A_TABLE: {}

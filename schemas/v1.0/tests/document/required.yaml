@@ -1,0 +1,14 @@
+fail:
+  - instance: ''
+    schema: required
+    detail: sqlapi
+  - instance: ''
+    schema: required
+    detail: info
+  - instance: ''
+    schema: required
+    detail: objects
+
+#sqlapi: #!
+#info: #!
+#objects: #!

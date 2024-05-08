@@ -1,0 +1,32 @@
+fail:
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf/0/required
+    detail: $ref
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf/1/required
+    detail: atomic
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf/2/required
+    detail: table
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf/3/required
+    detail: array
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf/4/required
+    detail: structure
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    schema: oneOf
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type
+    message: must not have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            foo: ... #!

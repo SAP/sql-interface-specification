@@ -1,0 +1,13 @@
+fail:
+  - instance: /objects/procedures/OBJECT/operations
+    schema: type
+    detail: array
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  procedures:
+    OBJECT:
+      operations: a string #!
+      parameters: ...

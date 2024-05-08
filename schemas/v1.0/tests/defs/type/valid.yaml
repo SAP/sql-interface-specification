@@ -1,0 +1,32 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+        - name: COLUMN_2
+          type:
+            atomic: ...
+        - name: COLUMN_3
+          type:
+            table: ...
+        - name: COLUMN_4
+          type:
+            array: ...
+        - name: COLUMN_5
+          type:
+            structure: ...
+components:
+  types:
+    atomic:
+      NVARCHAR(255):
+        atomic:
+          name: NVARCHAR
+          length: 255

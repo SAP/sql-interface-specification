@@ -1,0 +1,9 @@
+fail:
+  - instance: /servers
+    schema: type
+    detail: array
+
+sqlapi: ...
+info: ...
+servers: a string #!
+objects: ...

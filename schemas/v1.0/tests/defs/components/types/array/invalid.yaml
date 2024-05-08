@@ -1,0 +1,19 @@
+fail:
+  - instance: /components/types/array/T_ARRAY
+    schema: required
+    detail: array
+  - instance: /components/types/array/T_ARRAY
+    schema: unevaluatedProperties
+    message: must NOT have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    array:        # \
+      T_ARRAY:    # !=
+        atomic:   # /
+          name: NVARCHAR
+          length: 255

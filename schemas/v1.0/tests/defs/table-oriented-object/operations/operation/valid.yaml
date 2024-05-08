@@ -1,0 +1,30 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    OBJECT_A:
+      operations:
+        - select
+      columns: ...
+    OBJECT_B:
+      operations:
+        - insert
+        - update
+        - delete
+      columns: ...
+    OBJECT_C:
+      operations:
+        - select
+        - insert
+      columns: ...
+    OBJECT_D:
+      operations:
+        - select
+        - insert
+        - update
+        - delete
+        - replicate
+      columns: ...

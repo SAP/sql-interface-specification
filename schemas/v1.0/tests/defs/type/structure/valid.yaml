@@ -1,0 +1,22 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            structure:
+              fields:
+                - name: FIELD1
+                  type:
+                    atomic:
+                      name: INTEGER
+                - name: FIELD2
+                  type:
+                    atomic:
+                      name: INTEGER

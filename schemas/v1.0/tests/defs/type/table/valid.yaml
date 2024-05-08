@@ -1,0 +1,18 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            table:
+              columns:
+                - name: COLUMN_A
+                  type: ...
+                - name: COLUMN_B
+                  type: ...

@@ -1,0 +1,20 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+components:
+  types:
+    atomic:
+      NVARCHAR(255):
+        atomic:
+          name: NVARCHAR
+          length: 255

@@ -1,0 +1,13 @@
+fail:
+  - instance: /objects/tableOriented/OBJECT/operations
+    schema: type
+    detail: array
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    OBJECT:
+      operations: a string #!
+      columns: ...

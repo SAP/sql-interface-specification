@@ -1,0 +1,20 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers:
+  - description: ...
+    connections:
+      - odbc:
+          param1: value
+          param2: 123
+          param3: true
+      - jdbc:
+          param1: value
+          param2: 123
+          param3: true
+      - node:
+          param1: value
+          param2: 123
+          param3: true
+objects: ...

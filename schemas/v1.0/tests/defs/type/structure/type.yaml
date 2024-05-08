@@ -1,0 +1,16 @@
+fail:
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type/structure
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            structure: a string #

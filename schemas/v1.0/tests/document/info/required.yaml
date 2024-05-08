@@ -1,0 +1,15 @@
+fail:
+  - instance: /info
+    schema: required
+    detail: version
+  - instance: /info
+    schema: required
+    detail: title
+  - instance: /info
+    schema: required
+    detail: dbms
+
+sqlapi: ...
+info: {} #!
+servers: ...
+objects: ...

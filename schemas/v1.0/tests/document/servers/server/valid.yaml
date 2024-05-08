@@ -1,0 +1,14 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers:
+  - description: Server for federated data access with business users
+    purposes:
+      - federation
+    connections:
+      - odbc:
+          host: tpch.example.com
+          port: 443
+          servicepath: /sap/bc/sql/sql1/tpc/tpch
+objects: ...

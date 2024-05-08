@@ -1,0 +1,10 @@
+fail:
+  - instance: /objects/procedures
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  procedures: a string #!

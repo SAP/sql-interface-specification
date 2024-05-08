@@ -1,0 +1,30 @@
+fail:
+  - instance: /objects/tableOriented/A_VIEW/columns/0/type/atomic
+    schema: unevaluatedProperties
+    message: must not have unevaluated properties
+  - instance: /objects/tableOriented/A_VIEW/columns/1/type/atomic
+    schema: unevaluatedProperties
+    message: must not have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            atomic:
+              name: NVARCHAR
+              length: 255
+              foo: ... #!
+        - name: COLUMN_2
+          type:
+            atomic:
+              name: NUMERIC
+              length: 10
+              precision: 10
+              scale: 5
+              bar: ... #!

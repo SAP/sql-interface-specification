@@ -1,0 +1,35 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  procedures:
+    PROCEDURE_A:
+      description: a procedure
+      operations:
+        - execute
+      parameters:
+        - name: PARAM_A
+          mode: in
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+          optional: true
+        - name: PARAM_B
+          mode: out
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+          optional: false
+    PROCEDURE_B:
+      description: a procedure
+      operations:
+        - execute
+      parameters: []
+
+components:
+  types:
+    atomic:
+      NVARCHAR(255):
+        atomic:
+          name: NVARCHAR
+          length: 255

@@ -1,0 +1,23 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  schemas:
+    SCHEMA_1:
+      tableOriented:
+        A_TABLE:
+          kind: table
+          columns: ...
+        A_VIEW:
+          kind: view
+          columns: ...
+    SCHEMA_2:
+      tableOriented:
+        A_TABLE:
+          kind: table
+          columns: ...
+        A_VIEW:
+          kind: view
+          columns: ...

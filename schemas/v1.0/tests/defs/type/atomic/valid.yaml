@@ -1,0 +1,22 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            atomic:
+              name: NVARCHAR
+              length: 255
+        - name: COLUMN_2
+          type:
+            atomic:
+              name: NUMERIC
+              length: 10
+              precision: 10
+              scale: 5

@@ -1,0 +1,10 @@
+fail:
+  - instance: /objects/tableOriented
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented: a string #!

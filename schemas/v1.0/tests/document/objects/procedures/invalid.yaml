@@ -1,0 +1,11 @@
+fail:
+  - instance: /objects/procedures/PROCEDURE_A
+    schema: required
+    detail: parameters
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  procedures:
+    PROCEDURE_A: {}

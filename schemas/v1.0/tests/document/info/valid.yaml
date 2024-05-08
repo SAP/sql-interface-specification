@@ -1,0 +1,11 @@
+pass:
+
+sqlapi: ...
+info:
+  version: 1.2.3
+  title: title
+  dbms:
+    kind: kind
+    version: 1.2.3
+servers: ...
+objects: ...

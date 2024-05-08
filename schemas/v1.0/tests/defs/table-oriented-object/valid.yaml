@@ -1,0 +1,49 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      description: a view with parameters
+      kind: parameterized-view
+      operations:
+        - select
+      columns:
+        - name: COLUMN_A
+          type:
+            atomic:
+              name: NVARCHAR
+              length: 100
+          notNull: true
+        - name: COLUMN_B
+          type:
+            atomic:
+              name: DECIMAL
+              precision: 34
+              scale: 10
+        - name: COLUMN_C
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+      parameters:
+        - name: PARAM_A
+          mode: in
+          type:
+            $ref: '#/components/types/atomic/NVARCHAR(255)'
+          optional: true
+      constraints:
+        - kind: unique
+          columns:
+            - COLUMN_A
+      accessPaths:
+        - kind: index
+          columns:
+            - COLUMN_C
+components:
+  types:
+    atomic:
+      NVARCHAR(255):
+        atomic:
+          name: NVARCHAR
+          length: 255

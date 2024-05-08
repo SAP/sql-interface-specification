@@ -1,0 +1,15 @@
+fail:
+  - instance: /objects/schemas/SCHEMA_1
+    schema: type
+    detail: object
+  - instance: /objects/schemas/SCHEMA_2
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  schemas:
+    SCHEMA_1: a string #!
+    SCHEMA_2: a string #!

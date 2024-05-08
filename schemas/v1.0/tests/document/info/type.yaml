@@ -1,0 +1,18 @@
+fail:
+  - instance: /sqlapi
+    schema: type
+    detail: string
+  - instance: /info
+    schema: type
+    detail: object
+  - instance: /servers
+    schema: type
+    detail: array
+  - instance: /objects
+    schema: type
+    detail: object
+
+sqlapi: {} #!
+info: a string #!
+servers: a string #!
+objects: a string #!

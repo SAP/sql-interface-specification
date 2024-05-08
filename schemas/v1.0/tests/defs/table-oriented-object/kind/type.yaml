@@ -1,0 +1,14 @@
+fail:
+  - instance: /objects/tableOriented/OBJECT/kind
+    schema: type
+    detail: string
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    OBJECT:
+      kind:
+        - an array #!
+      columns: ...

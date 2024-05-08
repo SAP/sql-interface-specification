@@ -1,0 +1,24 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  databases:
+    DATABASE_1:
+      tableOriented:
+        A_TABLE:
+          kind: table
+          columns: ...
+        A_VIEW:
+          kind: view
+          columns: ...
+    DATABASE_2:
+      tableOriented:
+        A_TABLE:
+          kind: table
+          columns: ...
+        A_VIEW:
+          kind: view
+          columns: ...
+

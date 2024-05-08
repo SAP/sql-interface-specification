@@ -1,0 +1,21 @@
+fail:
+  - instance: /components/types/structure/T_STRUCT
+    schema: required
+    detail: structure
+  - instance: /components/types/structure/T_STRUCT
+    schema: unevaluatedProperties
+    message: must NOT have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    structure:    # \
+      T_STRUCT:   # !=
+        array:    # /
+          type:
+            atomic:
+              name: INTEGER
+          length: 10

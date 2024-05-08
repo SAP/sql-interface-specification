@@ -1,0 +1,15 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    array:        # \
+      T_ARRAY:    # =
+        array:    # /
+          type:
+            atomic:
+              name: INTEGER
+          length: 10

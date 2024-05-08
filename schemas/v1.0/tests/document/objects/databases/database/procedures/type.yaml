@@ -1,0 +1,17 @@
+fail:
+  - instance: /objects/databases/DATABASE_1/procedures
+    schema: type
+    detail: object
+  - instance: /objects/databases/DATABASE_2/procedures
+    schema: type
+    detail: object
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  databases:
+    DATABASE_1:
+      procedures: a string #!
+    DATABASE_2:
+      procedures: a string #!

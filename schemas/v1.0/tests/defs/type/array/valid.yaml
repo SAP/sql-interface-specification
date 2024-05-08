@@ -1,0 +1,17 @@
+pass:
+
+sqlapi: ...
+info: ...
+servers: ...
+objects:
+  tableOriented:
+    A_VIEW:
+      kind: view
+      columns:
+        - name: COLUMN_1
+          type:
+            array:
+              type:
+                atomic:
+                  name: INTEGER
+              length: 10

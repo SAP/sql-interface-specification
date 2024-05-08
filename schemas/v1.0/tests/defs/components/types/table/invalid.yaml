@@ -1,0 +1,21 @@
+fail:
+  - instance: /components/types/table/T_TABLE
+    schema: required
+    detail: table
+  - instance: /components/types/table/T_TABLE
+    schema: unevaluatedProperties
+    message: must NOT have unevaluated properties
+
+sqlapi: ...
+info: ...
+servers: ...
+objects: ...
+components:
+  types:
+    table:        # \
+      T_TABLE:    # !=
+        array:    # /
+          type:
+            atomic:
+              name: INTEGER
+          length: 10
