@@ -1,14 +1,22 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/sql-interface-specification)](https://api.reuse.software/info/github.com/SAP/sql-interface-specification)
 
-# sql-interface-specification
+# SQL interface specification for SAP ecosystem
 
 ## About this project
 
 The SQL interface specification for SAP ecosystem defines a standard document format for describing and publishing metadata of database-level API resources of a (database) server to allow consumers to discover API resources and to interact with a server via SQL client interfaces and SQL query or data manipulation statements.
 
-## Requirements and Setup
+The SQL interface specification for SAP ecosystem is like the Open API specification [1], but for SQL-based APIs instead of REST-based APIs.
 
-*Insert a short description what is required to get your project running...*
+[1] The OpenAPI Specification, Version 3.1.0, 2021. https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md
+
+## Versions
+
+The current version is [SQL interface specification for SAP ecosystem 1.0.2](/versions/1.0.2.md).
+
+The corresponding JSON schema is [schemas/v1.0/schema.yaml](/schemas/v1.0/schema.yaml).
+
+Examples are located in the [examples](/examples) folder.
 
 ## Support, Feedback, Contributing
 
@@ -23,4 +31,4 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Licensing
 
-Copyright 2024 SAP SE or an SAP affiliate company and sql-interface-specification contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/sql-interface-specification).
+Copyright 2024 SAP SE or an SAP affiliate company and SQL interface specification for SAP ecosystem contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/sql-interface-specification).
