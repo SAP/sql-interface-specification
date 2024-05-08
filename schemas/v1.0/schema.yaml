@@ -1,0 +1,432 @@
+$id: 'https://raw.githubusercontent.com/SAP/sql-interface-specification/main/schemas/v1.0/schema.yaml'
+$schema: 'https://json-schema.org/draft/2020-12/schema'
+
+$ref: '#/$defs/document'
+
+$defs:
+
+  document:
+    type: object
+    properties:
+      sqlapi:
+        type: string
+        pattern: '^1\.0\.\d+$'
+      info:
+        $ref: '#/$defs/info'
+      servers:
+        type: array
+        items:
+          $ref: '#/$defs/server'
+      objects:
+        $ref: '#/$defs/objects'
+      components:
+        $ref: '#/$defs/components'
+    patternProperties:
+      '^x-': {}
+    required:
+      - sqlapi
+      - info
+      - objects
+    unevaluatedProperties: false
+
+  info:
+    type: object
+    properties:
+      version:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      contact:
+        $ref: '#/$defs/contact'
+      license:
+        $ref: '#/$defs/license'
+      dbms:
+        $ref: '#/$defs/dbms'
+    required:
+      - version
+      - title
+      - dbms
+    unevaluatedProperties: false
+
+  contact:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      url:
+        type: string
+    unevaluatedProperties: false
+
+  license:
+    type: object
+    properties:
+      name:
+        type: string
+      url:
+        type: string
+    required:
+      - name
+    unevaluatedProperties: false
+
+  dbms:
+    type: object
+    properties:
+      kind:
+        type: string
+      version:
+        type: string
+    required:
+      - kind
+      - version
+    unevaluatedProperties: false
+
+  server:
+    type: object
+    properties:
+      description:
+        type: string
+      purposes:
+        type: array
+        items:
+          type: string
+          pattern: '^(federation|replication)$'
+      connections:
+        type: array
+        items:
+          $ref: '#/$defs/server-connection'
+        minItems: 1
+    required:
+      - description
+      - connections
+    unevaluatedProperties: false
+
+  server-connection:
+    type: object
+    patternProperties:
+      '^(odbc|jdbc|node)$':
+        type: object
+        additionalProperties:
+          anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+    minProperties: 1
+    maxProperties: 1
+    unevaluatedProperties: false
+
+  objects:
+    type: object
+    properties:
+      databases:
+        $ref: '#/$defs/databases'
+      schemas:
+        $ref: '#/$defs/schemas'
+      tableOriented:
+        $ref: '#/$defs/table-oriented-objects'
+      procedures:
+        $ref: '#/$defs/procedure-objects'
+    unevaluatedProperties: false
+
+  databases:
+    type: object
+    patternProperties:
+      '^.*$':
+        type: object
+        properties:
+          schemas:
+            $ref: '#/$defs/schemas'
+          tableOriented:
+            $ref: '#/$defs/table-oriented-objects'
+          procedures:
+            $ref: '#/$defs/procedure-objects'
+        unevaluatedProperties: false
+
+  schemas:
+    type: object
+    patternProperties:
+      '^.*$':
+        type: object
+        properties:
+          tableOriented:
+            $ref: '#/$defs/table-oriented-objects'
+          procedures:
+            $ref: '#/$defs/procedure-objects'
+        unevaluatedProperties: false
+  
+  table-oriented-objects:
+    type: object
+    patternProperties:
+      '^.*$':
+        $ref: '#/$defs/table-oriented-object'
+
+  table-oriented-object:
+    type: object
+    properties:
+      description:
+        type: string
+      kind:
+        type: string
+        pattern: '^(view|parameterized-view|table|table-function)$'
+      operations:
+        type: array
+        items:
+          type: string
+          pattern: '^(select|insert|update|delete|replicate)$'
+        minItems: 1
+      columns:
+        type: array
+        items:
+          $ref: '#/$defs/field'
+        minItems: 1
+      constraints:
+        type: array
+        items:
+          $ref: '#/$defs/constraint'
+      parameters:
+        type: array
+        items:
+          $ref: '#/$defs/parameter'
+      accessPaths:
+        type: array
+        items:
+          $ref: '#/$defs/access-path'
+    required:
+      - columns
+    unevaluatedProperties: false
+
+  procedure-objects:
+    type: object
+    patternProperties:
+      '^.*$':
+        $ref: '#/$defs/procedure-object'
+
+  procedure-object:
+    type: object
+    properties:
+      description:
+        type: string
+      operations:
+        type: array
+        items:
+          type: string
+          pattern: '^(execute)$'
+        minItems: 1
+      parameters:
+        type: array
+        items:
+          $ref: '#/$defs/parameter'
+    required:
+      - parameters
+    unevaluatedProperties: false
+
+  field:
+    type: object
+    properties:
+      name:
+        type:	string
+      description:
+        type:	string
+      type:
+        $ref: '#/$defs/type'
+      notNull:
+        type: boolean
+    patternProperties:
+      '^x-': {}
+    required:
+      - name
+      - type
+    unevaluatedProperties: false
+
+  constraint:
+    type: object
+    properties:
+      kind:
+        type: string
+      columns:
+        type: array
+        items:
+          type: string
+        minItems: 1
+    required:
+      - kind
+      - columns
+    unevaluatedProperties: false
+
+  parameter:
+    type: object
+    properties:
+      name:
+        type:	string
+      description:
+        type:	string
+      mode:
+        type: string
+        pattern: '^(in|out|inout)$'
+      type:
+        $ref: '#/$defs/type'
+      optional:
+        type: boolean
+    patternProperties:
+      '^x-': {}
+    required:
+      - name
+      - mode
+      - type
+    unevaluatedProperties: false
+
+  access-path:
+    type: object
+    properties:
+      kind:
+        type: string
+      columns:
+        type: array
+        items:
+          type: string
+        minItems: 1
+    required:
+      - kind
+      - columns
+    unevaluatedProperties: false
+
+  type:
+    type: object
+    properties:
+      $ref:
+        type: string
+        format: uri-reference
+      atomic:
+        $ref: '#/$defs/atomic-type'
+      table:
+        $ref: '#/$defs/table-type'
+      array:
+        $ref: '#/$defs/array-type'
+      structure:
+        $ref: '#/$defs/structure-type'
+    oneOf:
+      - required:
+          - $ref
+      - required:
+          - atomic
+      - required:
+          - table
+      - required:
+          - array
+      - required:
+          - structure
+    unevaluatedProperties: false
+
+  atomic-type:
+    type: object
+    properties:
+      name:
+        type: string
+      length:
+        type: integer
+      precision:
+        type: integer
+      scale:
+        type: integer
+    patternProperties:
+      '^x-': {}
+    required:
+      - name
+    unevaluatedProperties: false
+
+  table-type:
+    type: object
+    properties:
+      columns:
+        type: array
+        items:
+          $ref: '#/$defs/field'
+        minItems: 1
+    patternProperties:
+      '^x-': {}
+    required:
+      - columns
+    unevaluatedProperties: false
+
+  array-type:
+    type: object
+    properties:
+      type:
+        $ref: '#/$defs/type'
+      length:
+        type: integer
+    patternProperties:
+      '^x-': {}
+    required:
+      - type
+    unevaluatedProperties: false
+
+  structure-type:
+    type: object
+    properties:
+      fields:
+        type: array
+        items:
+          $ref: '#/$defs/field'
+        minItems: 1
+    patternProperties:
+      '^x-': {}
+    required:
+      - fields
+    unevaluatedProperties: false
+
+  components:
+    type: object
+    properties:
+      types:
+        type: object
+        properties:
+          atomic:
+            type: object
+            patternProperties:
+              '^.*$':
+                type: object
+                properties:
+                  atomic:
+                    $ref: '#/$defs/atomic-type'
+                required:
+                  - atomic
+                unevaluatedProperties: false
+          table:
+            type: object
+            patternProperties:
+              '^.*$':
+                type: object
+                properties:
+                  table:
+                    $ref: '#/$defs/table-type'
+                required:
+                  - table
+                unevaluatedProperties: false
+          array:
+            type: object
+            patternProperties:
+              '^.*$':
+                type: object
+                properties:
+                  array:
+                    $ref: '#/$defs/array-type'
+                required:
+                  - array
+                unevaluatedProperties: false
+          structure:
+            type: object
+            patternProperties:
+              '^.*$':
+                type: object
+                properties:
+                  structure:
+                    $ref: '#/$defs/structure-type'
+                required:
+                  - structure
+                unevaluatedProperties: false
+        unevaluatedProperties: false
+    unevaluatedProperties: false
