@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+// json2yaml -- convert JSON from stdin to YAML on stdout
+// usage: json2yaml < json > yaml
+
+'use strict';
+
+const yaml = require('yaml');
+const stdin = require('./lib/stdin');
+
+async function main() {
+  console.log(yaml.stringify(JSON.parse(stdin.readAllSync())));
+}
+
+(async () => {
+  try {
+    await main();
+  } catch (e) {
+    console.error(`error: ${e.message}`);
+    process.exitCode = 2;
+  }
+})();

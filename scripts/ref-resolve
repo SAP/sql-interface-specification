@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+// ref-resolve -- read YAML from stdin, resolve $ref references, write YAML to stdout
+// usage: ref-resolve < yaml > yaml
+
+'use strict';
+
+const yaml = require('yaml');
+const stdin = require('./lib/stdin');
+const jsonpath = require('jsonpath-plus').JSONPath;
+const jsonrefresolver = new (require('@stoplight/json-ref-resolver')).Resolver();
+
+async function main() {
+  const resolveResult = await jsonrefresolver.resolve(yaml.parse(stdin.readAllSync()));
+  if (resolveResult.errors.length === 0) {
+    console.log(yaml.stringify(resolveResult.result, { aliasDuplicateObjects: false }));
+  } else {
+    resolveResult.errors.forEach(error => {
+      console.error(`error: ${error.message} at ${jsonpath.toPointer([, ...error.path])}`);
+    });
+    process.exitCode = 1;
+  }
+}
+
+(async () => {
+  try {
+    await main();
+  } catch (e) {
+    console.error(`error: ${e.message}`);
+    process.exitCode = 2;
+  }
+})();

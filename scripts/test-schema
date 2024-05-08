@@ -1,0 +1,200 @@
+#!/usr/bin/env node
+
+// test-schema -- run tests on the given JSON schema
+// usage: test-schema <schema-file> <test-folder-or-file>
+
+'use strict';
+
+const fs = require('fs');
+const dir = require('node-dir');
+const jsonpath = require('jsonpath-plus').JSONPath;
+const jsonpointer = require('json-pointer');
+const jsonrefresolver = new (require('@stoplight/json-ref-resolver')).Resolver();
+const yaml = require('yaml');
+const validatorAjv = require('./lib/validator-ajv');
+
+process.exitCode = 1;
+
+function resolveReferencesThenValidate(validator) {
+  return {
+    name: 'ref-' + validator.name,
+    validate: async function (document) {
+      const resolverResult = await jsonrefresolver.resolve(document);
+      // resolverResult.result might be partially resolved only
+      return validator.validate(resolverResult.result);
+    }
+  }
+}
+
+function matches(fail, error) {
+  if (fail.instance !== error.instancePath) {
+    return false;
+  }
+  if (fail.schema && error.schemaPath && !error.schemaPath.endsWith('/' + fail.schema)) {
+    return false;
+  }
+  if (fail.detail && !(error.message.includes(fail.detail) || JSON.stringify(error.params || {}).includes(fail.detail))) {
+    return false;
+  }
+  if (fail.message && !error.message.toLowerCase().includes(fail.message.toLowerCase())) {
+    return false;
+  }
+  return true;
+}
+
+async function test(validator, document) {
+  document = structuredClone(document);
+  const pass = document.pass;
+  delete document.pass;
+  const fail = document.fail;
+  delete document.fail;
+
+  const messages = [];
+  const unfulfilledExpectations = [];
+  const unmatchedErrors = [];
+
+  if ((pass !== undefined && fail !== undefined) || (pass === undefined && fail === undefined)) {
+    messages.push('test must be marked as pass or fail');
+  } else {
+    const errors = (await validator.validate(document)).errors.filter(e => {
+      // ignore errors on '...' elements
+      const pointer = e.instancePath;
+      const element = jsonpointer.has(document, pointer) && jsonpointer.get(document, pointer);
+      return !(element && element === '...');
+    });
+    const valid = errors.length === 0;
+
+    if (fail !== undefined) {
+      const missing = (fail || []).filter(f => {
+        return errors.filter(e => {
+          return matches(f, e);
+        }).length === 0;
+      });
+      const additional = errors.filter(e => {
+        return (fail || []).filter(f => {
+          return matches(f, e);
+        }).length === 0;
+      });
+      if ((missing.length !== 0) || (additional.length !== 0)) {
+        messages.push('test has unfulfilled expectations or unmatched errors');
+        missing.forEach(f => {
+          unfulfilledExpectations.push('instance: ' + f.instance + ', schema: ' + f.schema + ', detail: ' + f.detail + ', message: ' + f.message);
+        });
+        additional.forEach(f => {
+          unmatchedErrors.push('instance: ' + f.instancePath + ', schema: ' + f.schemaPath + ', details: ' + JSON.stringify(f.params) + ', message: ' + f.message);
+        });
+      }
+    } else {
+      if (valid) {
+        // ok
+      } else {
+        messages.push('expected to pass, but failed');
+        errors.forEach(f => {
+          unmatchedErrors.push('instance: ' + f.instancePath + ', schema: ' + f.schemaPath + ', details: ' + JSON.stringify(f.params) + ', message: ' + f.message);
+        });
+      }
+    }
+
+    return {
+      messages,
+      unfulfilledExpectations,
+      unmatchedErrors,
+    }
+  }
+}
+
+async function main() {
+  const chalk = await (import("chalk").then(m => m.default));
+
+  const schemaFile = process.argv[2] || '';
+  const testFolderOrFile = process.argv[3] || '';
+
+  const ajvValidator = validatorAjv.create(schemaFile);
+  const validators = [
+    ajvValidator,
+    resolveReferencesThenValidate(ajvValidator),
+  ];
+
+  const statTestFolderOrFile = fs.statSync(testFolderOrFile);
+  const testFiles = (() => {
+    if (statTestFolderOrFile.isDirectory()) {
+      return dir.files(testFolderOrFile, 'file', null, { sync: true, recursive: true }).filter(file => file.endsWith('.yaml')).sort();
+    } else if (statTestFolderOrFile.isFile()) {
+      return [testFolderOrFile];
+    } else {
+      throw new Error('argument must be test folder or file');
+    }
+  })();
+
+  let failed = 0;
+  let passed = 0;
+  let skipped = 0;
+
+  for (let i = 0, previousTestGroup = ''; i < testFiles.length; i++) {
+    const testFile = testFiles[i];
+    const testFileSegments = testFile.split('/');
+
+    const testGroup = testFileSegments.slice(0, -1).join('/');
+    if (testGroup !== previousTestGroup) {
+      if (previousTestGroup !== '') {
+        console.log('');
+      }
+      console.log(`${testGroup.replace(testFolderOrFile, '')}:`);
+      previousTestGroup = testGroup;
+    }
+
+    process.stdout.write(`  ${testFileSegments[testFileSegments.length - 1].replace(/-/g, ' ').replace('.yaml', '')} ... `);
+
+    const testDocument = yaml.parse(fs.readFileSync(testFile, 'UTF-8'));
+
+    if (testDocument.skip !== undefined) {
+      skipped++;
+      continue;
+    }
+
+    const testResults = [];
+    for (let v = 0; v < validators.length; v++) {
+      const validator = validators[v];
+      const validatorResult = await test(validator, testDocument);
+      if (validatorResult.messages.length !== 0) {
+        validatorResult.validator = validator;
+        testResults.push(validatorResult);
+      }
+    }
+    if (testResults.length === 0) {
+      passed++;
+      console.log(chalk.green('ok '));
+    } else {
+      failed++;
+      console.log(chalk.red('failed '));
+      for (let r = 0; r < testResults.length; r++) {
+        const testResult = testResults[r];
+        const prefix = `[${testResult.validator.name}]`;
+        testResult.messages.forEach(m => {
+          console.log(chalk.red(`    ${prefix} error: ${m}`));
+        });
+        testResult.unfulfilledExpectations.forEach(m => {
+          console.log(chalk.red(`    ${prefix} - expected: ${m}`));
+        });
+        testResult.unmatchedErrors.forEach(m => {
+          console.log(chalk.blue(`    ${prefix} - found   : ${m}`));
+        });
+      }
+
+    }
+  }
+
+  console.log('');
+  console.log(`total: ${testFiles.length}, passed: ${passed}, failed: ${failed}, skipped: ${skipped}, validators: [${validators.map(v => v.name).join(', ')}]`);
+  process.exitCode = failed ? 1 : 0;
+}
+
+(async () => {
+  try {
+    await main();
+  } catch (e) {
+    console.error(e);
+    console.error(`error: ${e.message}`);
+    process.exitCode = 2;
+  }
+})();
