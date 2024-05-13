@@ -18,7 +18,13 @@ The corresponding JSON schema is [schemas/v1.0/schema.yaml](/schemas/v1.0/schema
 
 Examples are located in the [examples](/examples) folder.
 
-## Support, Feedback, Contributing
+## Requirements
+
+The [scripts](/scripts) folder contains some scripts to validate a SQL interface document, to convert between JSON and YAML representations, and to run the tests of the JSON schema file.
+
+The scripts are based on [Node.js](https://nodejs.org). Before running a script, ensure that dependencies are installed via `npm install`.
+
+## Contributing
 
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/sql-interface-specification/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
