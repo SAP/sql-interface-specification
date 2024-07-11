@@ -1,0 +1,16 @@
+{
+  "name": "@sap/sql-interface-specification",
+  "description": "SQL interface specification for SAP ecosystem",
+  "version": "1.0.2",
+  "files": [
+    "./schemas/v1.0/schema.json"
+  ],
+  "scripts": {
+  },
+  "author": "SAP SE",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAP/sql-interface-specification.git"
+  }
+}
