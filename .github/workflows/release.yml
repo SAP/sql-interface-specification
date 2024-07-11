@@ -23,12 +23,10 @@ jobs:
           cd ./scripts
           npm install
           ./yaml2json < ../schemas/v1.0/schema.yaml > ../schemas/v1.0/schema.json
-          cd ..
-          ls -la ./schemas/v1.0/
 
-      # - name: Publish package
-      #   # --provenance enables the automatic generation of provenance statements
-      #   # --access public is only hard required for the initial release, but it doesn't hurt having it setup
-      #   run: npm publish --provenance --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish package
+        # --provenance enables the automatic generation of provenance statements
+        # --access public is only hard required for the initial release, but it doesn't hurt having it setup
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
