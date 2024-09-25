@@ -1,0 +1,41 @@
+$id: "https://raw.githubusercontent.com/SAP/sql-interface-specification/main/schemas/v1.0/schema.yaml"
+$schema: "https://json-schema.org/draft/2020-12/schema"
+
+$ref: "#/$defs/document"
+
+$defs:
+  x-sap-dpp-entitySemantics:
+    type: string
+    anyOf:
+      - name: sap:DataSubject
+      - name: sap:DataSubjectDetails
+      - name: sap:Other
+
+  x-sap-dpp-dataSubjectRole:
+    type: string
+
+  x-sap-dpp-dataSubjectRoleDescription:
+    type: string
+
+  x-sap-dpp-fieldSemantics:
+    type: string
+    anyOf:
+      - name: sap:DataSubjectID
+      - name: sap:ConsentID
+      - name: sap:PurposeID
+      - name: sap:ContractRelatedID
+      - name: sap:LegalEntityID (to be deprecated)
+      - name: sap:DataControllerID
+      - name: sap:UserID
+      - name: sap:EndOfBusinessDate
+      - name: sap:EndOfBusinessDate
+      - name: sap:BlockingDate
+      - name: sap:EndOfRetentionDate
+
+  x-sap-dpp-isPotentiallyPersonal:
+    type: boolean
+    default: true
+
+  x-sap-dpp-isPotentiallySensitive:
+    type: boolean
+    default: true
