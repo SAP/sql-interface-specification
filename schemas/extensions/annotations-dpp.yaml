@@ -6,36 +6,73 @@ $ref: "#/$defs/document"
 $defs:
   x-sap-dpp-entitySemantics:
     type: string
-    anyOf:
-      - name: sap:DataSubject
-      - name: sap:DataSubjectDetails
-      - name: sap:Other
+    description: |-
+      Primary meaning of the personal data in the annotated entity set. Entities annotated with x-sap-dpp-entitySemantics are synonymous to x-sap-dpp-isPotentiallyPersonal.
+    oneOf:
+      - const: "sap:DataSubject"
+        description: |-
+          Describes a data subject, for example, a customer or vendor.
+      - const: "sap:DataSubjectDetails"
+        description: |-
+          Describes entities that contain details for a data subject, for example an address.
+      - const: "sap:Other"
+        description: |-
+          Entities that contain personal data or references to data subjects but do not represent data subjects or details itself. For example: customer quote, customer order, or purchase order.
 
   x-sap-dpp-dataSubjectRole:
     type: string
+    description: |-
+      Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
 
   x-sap-dpp-dataSubjectRoleDescription:
     type: string
+    description: |-
+      Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
 
   x-sap-dpp-fieldSemantics:
     type: string
-    anyOf:
-      - name: sap:DataSubjectID
-      - name: sap:ConsentID
-      - name: sap:PurposeID
-      - name: sap:ContractRelatedID
-      - name: sap:LegalEntityID (to be deprecated)
-      - name: sap:DataControllerID
-      - name: sap:UserID
-      - name: sap:EndOfBusinessDate
-      - name: sap:EndOfBusinessDate
-      - name: sap:BlockingDate
-      - name: sap:EndOfRetentionDate
+    description: |-
+      Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with x-sap-dpp-fieldSemantics need not be additionally annotated with x-sap-dpp-isPotentiallyPersonal.
+    oneOf:
+      - const: "sap:DataSubjectID"
+        description: |-
+          Identifies the data subjects unique key or references it.
+      - const: "sap:DataSubjectIDType"
+        description: |-
+          The type describing the DataSubjectID identifying the data subject, e.g., an e-mail address, semantic of the ID or a customer.
+      - const: "sap:ConsentID"
+        description: |-
+          The unique identifier for a consent. A consent is an action of data subjects confirming that the usage of their personal data shall be allowed for a given purpose. A consent functionality allows the storage of a consent record in relation to a specific purpose and shows if a data subject has granted, withdrawn, or denied consent.
+      - const: "sap:PurposeID"
+        description: |-
+          The unique identifier for the purpose of a consent. The purpose of a consent is the information that specifies the reason for and the goal of the processing of a specific set of personal data. As a rule, the purpose references the relevant legal basis for the processing of personal data.
+      - const: "sap:ContractRelatedID"
+        description: |-
+          The unique identifier for transactional data that is related to a contract that requires processing of personal data. For example, Sales Contract ID, Purchase Contract ID, or Service Contract ID.
+      - const: "sap:DataControllerID"
+        description: |-
+          The unique identifier of a legal entity which alone or jointly with others determines the purposes and means of the processing of personal data. The Data Controller is fully responsible (and accountable) that data protection and privacy principles (such as purpose limitation or data minimization), defined in the European General Data Protection Regulation (GDPR) or any other data protection legislation, are adhered to when processing personal data. The DataControllerID succeeds the LegalEntityID.
+      - const: "sap:UserID"
+        description: |-
+          The unique identifier of a user. A user is an individual who interacts with the services supplied by a system.
+      - const: "sap:EndOfBusinessDate"
+        description: |-
+          Defines the end of active business and the start of residence time and retention period. End of business is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached and a customer-defined residence period has passed, the data is blocked and can only be accessed by users with special authorizations (for example, tax auditors). All fields of type Edm.Date or Edm.DateTimeOffset on which the end of business determination depends should be annotated.
+      - const: "sap:BlockingDate"
+        description: |-
+          Defines a date that marks when the provider of the data will block these. This is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached, the data is blocked in the source and can only be displayed by users with special authorizations (for example, tax auditors); however, it is not allowed to create/change/copy/follow-up blocked data. Consumers of the data should consider if there is an additional purpose to process the data beyond the defined blocking date
+      - const: "sap:EndOfRetentionDate"
+        description: |-
+          Defines a date that marks when the provider of the data can destroy these. Consumers of the data should consider if there is an additional purpose (or a legal hold) to process the data beyond the defined destruction date.
 
   x-sap-dpp-isPotentiallyPersonal:
     type: boolean
+    description: |-
+      Property contains potentially personal data. Properties annotated with x-sap-dpp-fieldSemantics need not be additionally annotated with this extension.
     default: true
 
   x-sap-dpp-isPotentiallySensitive:
     type: boolean
+    description: |-
+      Property contains potentially sensitive personal data.
     default: true
