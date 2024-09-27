@@ -3,6 +3,12 @@ $schema: "https://json-schema.org/draft/2020-12/schema"
 
 $ref: "#/$defs/document"
 
+title: "x-sap-dpp"
+
+x-extension:
+  targetDocument: "./schemas/v1.0/schema.yaml"
+  targetLink: "../schemas/v1.0/schema"
+
 $defs:
   x-sap-dpp-entitySemantics:
     type: string
@@ -18,16 +24,22 @@ $defs:
       - const: "sap:Other"
         description: |-
           Entities that contain personal data or references to data subjects but do not represent data subjects or details itself. For example: customer quote, customer order, or purchase order.
+    x-extension-targets:
+      - table-oriented-objects
 
   x-sap-dpp-dataSubjectRole:
     type: string
     description: |-
       Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+    x-extension-targets:
+      - table-oriented-objects
 
   x-sap-dpp-dataSubjectRoleDescription:
     type: string
     description: |-
       Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+    x-extension-targets:
+      - table-oriented-objects
 
   x-sap-dpp-fieldSemantics:
     type: string
@@ -64,15 +76,21 @@ $defs:
       - const: "sap:EndOfRetentionDate"
         description: |-
           Defines a date that marks when the provider of the data can destroy these. Consumers of the data should consider if there is an additional purpose (or a legal hold) to process the data beyond the defined destruction date.
+    x-extension-targets:
+      - field
 
   x-sap-dpp-isPotentiallyPersonal:
     type: boolean
     description: |-
       Property contains potentially personal data. Properties annotated with x-sap-dpp-fieldSemantics need not be additionally annotated with this extension.
     default: true
+    x-extension-targets:
+      - field
 
   x-sap-dpp-isPotentiallySensitive:
     type: boolean
     description: |-
       Property contains potentially sensitive personal data.
     default: true
+    x-extension-targets:
+      - field
