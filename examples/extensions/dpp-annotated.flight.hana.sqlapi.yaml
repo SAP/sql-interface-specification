@@ -28,6 +28,7 @@ objects:
     FLIGHT_API:
       tableOriented:
         AGENCY:
+          x-sap-dpp-entitySemantics: "sap:DataSubject"
           kind: view
           operations:
             - select
@@ -36,31 +37,40 @@ objects:
             - delete
           columns:
             - name: AGENCY_ID
+              x-sap-dpp-fieldSemantics: sap:DataSubjectID
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
               notNull: true
             - name: NAME
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(80)"
             - name: STREET
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(60)"
             - name: POSTAL_CODE
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(10)"
             - name: CITY
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: COUNTRY_CODE
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(3)"
             - name: PHONE_NUMBER
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(30)"
             - name: EMAIL_ADDRESS
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(256)"
             - name: WEB_ADDRESS
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(256)"
         AIRPORT:
@@ -99,7 +109,7 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
             - name: BOOKING_ID
-              x-sap-dpp-isPotentiallyPersonal: true
+              x-sap-dpp-fieldSemantics: ContractRelatedID
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(4)"
               notNull: true
@@ -200,6 +210,7 @@ objects:
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: TITLE
+              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(10)"
             - name: STREET
@@ -276,6 +287,7 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
             - name: AGENCY_ID
+              x-sap-dpp-fieldSemantics: "sap:DataSubjectID"
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
             - name: CUSTOMER_ID

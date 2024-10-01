@@ -28,35 +28,6 @@ interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 Constraints: OPTIONAL
 
-Example:
-
-```
-sqlapi: 1.0.1
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          …
-        …
-```
 ### `x-sap-dpp-dataSubjectRole`
 
 - Type: `string`
@@ -65,36 +36,6 @@ objects:
 
 Constraints: OPTIONAL
 
-Example:
-```
-sqlapi: "1.0.1"
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          x-sap-dpp-dataSubjectRole: sap:Customer
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          …
-        …
-```
-
 ### `x-sap-dpp-dataSubjectRoleDescription`
 
 - Type: `string`
@@ -102,37 +43,6 @@ objects:
 - Description: Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
 
 Constraints: OPTIONAL
-
-Example:
-```
-sqlapi: "1.0.1"
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          x-sap-dpp-dataSubjectRole: Customer
-          x-sap-dpp-dataSubjectRoleDescription: Customer Reference
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          …
-        …
-```
 
 ### `x-sap-dpp-fieldSemantics`
 
@@ -153,43 +63,6 @@ objects:
 
 Constraints: OPTIONAL
 
-Example:
-```
-Sqlapi: "1.0.1"
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          x-sap-dpp-dataSubjectRole: Customer
-          x-sap-dpp-dataSubjectRoleDescription: Customer Reference
-          columns:
-          - name: C_CUSTKEY
-            type:
-             $ref: "#/components/types/atomic/INT4-INT4"
-            notNull: true
-            x-sap-dpp-fieldSemantics: sap:DataSubjectID          
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          ...
-        ...
-```
-
 ### `x-sap-dpp-isPotentiallyPersonal`
 
 - Type: `boolean`
@@ -201,48 +74,6 @@ Constraints:
 - OPTIONAL
 - Default: `TRUE`
 
-Example:
-```
-Sqlapi: "1.0.1"
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          x-sap-dpp-dataSubjectRole: Customer
-          x-sap-dpp-dataSubjectRoleDescription: Customer Reference
-          columns:
-          - name: C_CUSTKEY
-            type:
-             $ref: "#/components/types/atomic/INT4-INT4"
-            notNull: true
-            x-sap-dpp-fieldSemantics: sap:DataSubjectID
-          - name: C_NAME
-            type:
-             $ref: "#/components/types/atomic/CHAR(25)-CHAR"
-            notNull: false
-            x-sap-dpp-isPotentiallyPersonal: TRUE
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          ...
-        ...
-```
-
 ### `x-sap-dpp-isPotentiallySensitive`
 
 - Type: `boolean`
@@ -253,46 +84,3 @@ Constraints:
 
 - OPTIONAL
 - Default: `TRUE`
-
-Example:
-```
-Sqlapi: "1.0.1"
-info:
-  version: 2.18.0
-  title: TPC-H Benchmark
-  …
-servers:
-  - …
-objects:
-  schemas:
-    TPC-H:
-      tableOriented:
-        CUSTOMER:
-          description: Customer data
-          kind: view
-          x-sap-dpp-entitySemantics: sap:DataSubject
-          x-sap-dpp-dataSubjectRole: Customer
-          x-sap-dpp-dataSubjectRoleDescription: Customer Reference
-          columns:
-          - name: C_CUSTKEY
-            type:
-             $ref: "#/components/types/atomic/INT4-INT4"
-            notNull: true
-            x-sap-dpp-fieldSemantics: sap:DataSubjectID
-          - name: C_GENDER
-            type:
-             $ref: "#/components/types/atomic/CHAR(25)-CHAR"
-            notNull: false
-            x-sap-dpp-isPotentiallySensitive: TRUE
-          …
-        LINEITEM:
-          …
-        ORDERS:
-          …
-        …
-      procedures:
-        CREATE_ORDER:
-          ...
-        ...
-
-```
