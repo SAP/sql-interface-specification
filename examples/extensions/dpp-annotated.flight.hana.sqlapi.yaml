@@ -42,35 +42,27 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
               notNull: true
             - name: NAME
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(80)"
             - name: STREET
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(60)"
             - name: POSTAL_CODE
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(10)"
             - name: CITY
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: COUNTRY_CODE
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(3)"
             - name: PHONE_NUMBER
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(30)"
             - name: EMAIL_ADDRESS
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(256)"
             - name: WEB_ADDRESS
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(256)"
         AIRPORT:
@@ -104,16 +96,16 @@ objects:
             - delete
           columns:
             - name: TRAVEL_ID
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
             - name: BOOKING_ID
-              x-sap-dpp-fieldSemantics: ContractRelatedID
+              x-sap-dpp-fieldSemantics: sap:ContractRelatedID
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(4)"
               notNull: true
             - name: BOOKING_DATE
+              x-sap-dpp-fieldSemantics: sap:EndOfBusinessDate
               type:
                 $ref: "#/components/types/atomic/DATE"
             - name: CUSTOMER_ID
@@ -202,39 +194,30 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
               notNull: true
             - name: FIRST_NAME
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: LAST_NAME
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: TITLE
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(10)"
             - name: STREET
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(60)"
             - name: POSTAL_CODE
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(10)"
             - name: CITY
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(40)"
             - name: COUNTRY_CODE
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(3)"
             - name: PHONE_NUMBER
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(30)"
             - name: EMAIL_ADDRESS
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(256)"
         FLIGHT:
@@ -282,7 +265,6 @@ objects:
             - delete
           columns:
             - name: TRAVEL_ID
-              x-sap-dpp-isPotentiallyPersonal: true
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
