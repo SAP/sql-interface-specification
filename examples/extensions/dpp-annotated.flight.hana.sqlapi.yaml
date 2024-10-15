@@ -2,8 +2,7 @@ sqlapi: 1.0.2
 
 # exemplary DPP annotated example of flight.hana.sqlapi.yaml
 # Draft.
-# Note 1: DPP-annotations might be incomplete.
-# Note 2: Agency has not been annotated, even if this might be seen as BusinessPartner
+# Note: DPP-annotations might be incomplete or incorrect.
 
 info:
   version: 1.0.0
