@@ -67,7 +67,7 @@ Constraints: OPTIONAL
 
 - Type: `boolean`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented` 
-- Description: Property contains potentially personal data. Properties annotated with `x-sap-dpp-fieldSemantics` need not be additionally annotated with this extension.
+- Description: Property contains potentially personal data. Properties annotated with `x-sap-dpp-fieldSemantics` need not be additionally annotated with this extension. Personal data describes information which is related to any information relating to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
 
 Constraints:
 
@@ -78,7 +78,13 @@ Constraints:
 
 - Type: `boolean`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
-- Description: Property contains potentially sensitive personal data.
+- Description: Property contains potentially sensitive personal data.  Sensitive personal data is a category of personal data that needs special handling. The determination which personal data that is sensitive may differ for different legal areas or industries.
+  
+  Examples of sensitive personal data:
+    - Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
+    - Personal data subject to professional secrecy.
+    - Personal data relating to criminal or administrative offenses.
+    - Personal data concerning insurances and bank or credit card accounts.
 
 Constraints:
 
