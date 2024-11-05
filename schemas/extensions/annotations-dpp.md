@@ -16,7 +16,7 @@ interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Annotations
 
-### `x-sap-dpp-entitySemantics`
+### `x-sap-dpp-entity-semantics`
 
 - Type: `string`
 - Allowed Values:
@@ -24,11 +24,11 @@ interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
   - `sap:DataSubjectDetails`
   - `sap:Other`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
-- Description: Primary meaning of the personal data in the annotated set. Entities annotated with `x-sap-dpp-entitySemantics` are synonymous to `x-sap-dpp-isPotentiallyPersonal`.
+- Description: Primary meaning of the personal data in the annotated set. Entities annotated with `x-sap-dpp-entity-semantics` are synonymous to `x-sap-dpp-is-potentially-personal`.
 
 Constraints: OPTIONAL
 
-### `x-sap-dpp-dataSubjectRole`
+### `x-sap-dpp-data-subject-role`
 
 - Type: `string`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
@@ -36,7 +36,7 @@ Constraints: OPTIONAL
 
 Constraints: OPTIONAL
 
-### `x-sap-dpp-dataSubjectRoleDescription`
+### `x-sap-dpp-data-subject-role-description`
 
 - Type: `string`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
@@ -44,11 +44,11 @@ Constraints: OPTIONAL
 
 Constraints: OPTIONAL
 
-### `x-sap-dpp-fieldSemantics`
+### `x-sap-dpp-field-semantics`
 
 - Type: `string`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented` 
-- Description: Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with `x-sap-dpp-fieldSemantics` need not be additionally annotated with `x-sap-dpp-isPotentiallyPersonal`.
+- Description: Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with `x-sap-dpp-field-semantics` need not be additionally annotated with `x-sap-dpp-is-potentially-personal`.
 - Allowed Values:
   - `sap:DataSubjectID`
   - `sap:ConsentID`
@@ -63,11 +63,11 @@ Constraints: OPTIONAL
 
 Constraints: OPTIONAL
 
-### `x-sap-dpp-isPotentiallyPersonal`
+### `x-sap-dpp-is-potentially-personal`
 
 - Type: `boolean`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented` 
-- Description: Property contains potentially personal data. Properties annotated with `x-sap-dpp-fieldSemantics` need not be additionally annotated with this extension. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
+- Description: Property contains potentially personal data. Properties annotated with `x-sap-dpp-field-semantics` need not be additionally annotated with this extension. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
 
 Constraints:
 

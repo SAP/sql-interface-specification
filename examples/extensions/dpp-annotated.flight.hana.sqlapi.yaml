@@ -27,7 +27,7 @@ objects:
     FLIGHT_API:
       tableOriented:
         AGENCY:
-          x-sap-dpp-entitySemantics: "sap:DataSubject"
+          x-sap-dpp-entity-semantics: "sap:DataSubject"
           kind: view
           operations:
             - select
@@ -36,7 +36,7 @@ objects:
             - delete
           columns:
             - name: AGENCY_ID
-              x-sap-dpp-fieldSemantics: sap:DataSubjectID
+              x-sap-dpp-field-semantics: sap:DataSubjectID
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
               notNull: true
@@ -86,7 +86,7 @@ objects:
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(3)"
         BOOKING:
-          x-sap-dpp-entitySemantics: "sap:Other"
+          x-sap-dpp-entity-semantics: "sap:Other"
           kind: view
           operations:
             - select
@@ -99,16 +99,16 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
             - name: BOOKING_ID
-              x-sap-dpp-fieldSemantics: sap:ContractRelatedID
+              x-sap-dpp-field-semantics: sap:ContractRelatedID
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(4)"
               notNull: true
             - name: BOOKING_DATE
-              x-sap-dpp-fieldSemantics: sap:EndOfBusinessDate
+              x-sap-dpp-field-semantics: sap:EndOfBusinessDate
               type:
                 $ref: "#/components/types/atomic/DATE"
             - name: CUSTOMER_ID
-              x-sap-dpp-fieldSemantics: "sap:DataSubjectID"
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
             - name: CARRIER_ID
@@ -179,7 +179,7 @@ objects:
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(3)"
         CUSTOMER:
-          x-sap-dpp-entitySemantics: "sap:DataSubject"
+          x-sap-dpp-entity-semantics: "sap:DataSubject"
           kind: view
           operations:
             - select
@@ -188,7 +188,7 @@ objects:
             - delete
           columns:
             - name: CUSTOMER_ID
-              x-sap-dpp-fieldSemantics: "sap:DataSubjectID"
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
               notNull: true
@@ -255,7 +255,7 @@ objects:
               type:
                 $ref: "#/components/types/atomic/INTEGER"
         TRAVEL:
-          x-sap-dpp-entitySemantics: "sap:Other"
+          x-sap-dpp-entity-semantics: "sap:Other"
           kind: view
           operations:
             - select
@@ -268,18 +268,18 @@ objects:
                 $ref: "#/components/types/atomic/NVARCHAR(8)"
               notNull: true
             - name: AGENCY_ID
-              x-sap-dpp-fieldSemantics: "sap:DataSubjectID"
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
             - name: CUSTOMER_ID
-              x-sap-dpp-fieldSemantics: "sap:DataSubjectID"
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
               type:
                 $ref: "#/components/types/atomic/NVARCHAR(6)"
             - name: BEGIN_DATE
               type:
                 $ref: "#/components/types/atomic/DATE"
             - name: END_DATE
-              x-sap-dpp-fieldSemantics: "sap:EndOfBusinessDate"
+              x-sap-dpp-field-semantics: "sap:EndOfBusinessDate"
               type:
                 $ref: "#/components/types/atomic/DATE"
             - name: BOOKING_FEE

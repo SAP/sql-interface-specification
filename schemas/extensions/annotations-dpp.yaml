@@ -10,10 +10,10 @@ x-extension:
   targetLink: "../schemas/v1.0/schema"
 
 $defs:
-  x-sap-dpp-entitySemantics:
+  x-sap-dpp-entity-semantics:
     type: string
     description: |-
-      Primary meaning of the personal data in the annotated entity set. Entities annotated with x-sap-dpp-entitySemantics are synonymous to x-sap-dpp-isPotentiallyPersonal.
+      Primary meaning of the personal data in the annotated entity set. Entities annotated with x-sap-dpp-entity-semantics are synonymous to x-sap-dpp-is-potentially-personal.
     oneOf:
       - const: "sap:DataSubject"
         description: |-
@@ -27,24 +27,24 @@ $defs:
     x-extension-targets:
       - table-oriented-objects
 
-  x-sap-dpp-dataSubjectRole:
+  x-sap-dpp-data-subject-role:
     type: string
     description: |-
       Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
     x-extension-targets:
       - table-oriented-objects
 
-  x-sap-dpp-dataSubjectRoleDescription:
+  x-sap-dpp-data-subject-role-description:
     type: string
     description: |-
       Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
     x-extension-targets:
       - table-oriented-objects
 
-  x-sap-dpp-fieldSemantics:
+  x-sap-dpp-field-semantics:
     type: string
     description: |-
-      Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with x-sap-dpp-fieldSemantics need not be additionally annotated with x-sap-dpp-isPotentiallyPersonal.
+      Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with x-sap-dpp-field-semantics need not be additionally annotated with x-sap-dpp-is-potentially-personal.
     oneOf:
       - const: "sap:DataSubjectID"
         description: |-
@@ -79,15 +79,15 @@ $defs:
     x-extension-targets:
       - field
 
-  x-sap-dpp-isPotentiallyPersonal:
+  x-sap-dpp-is-potentially-personal:
     type: boolean
     description: |-
-      Property contains potentially personal data. Properties annotated with x-sap-dpp-fieldSemantics need not be additionally annotated with this extension. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
+      Property contains potentially personal data. Properties annotated with x-sap-dpp-field-semantics need not be additionally annotated with this extension. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
     default: true
     x-extension-targets:
       - field
 
-  x-sap-dpp-isPotentiallySensitive:
+  x-sap-dpp-is-potentially-sensitive:
     type: boolean
     description: |-
       Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
