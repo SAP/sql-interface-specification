@@ -1,0 +1,367 @@
+sqlapi: 1.0.2
+
+# exemplary DPP annotated example of flight.hana.sqlapi.yaml
+# Draft.
+# Note: DPP-annotations might be incomplete or incorrect.
+
+info:
+  version: 1.0.0
+  title: FLIGHT_API Objects
+  dbms:
+    kind: SAP HANA Cloud
+    version: 4.00.000.00
+servers:
+  - description: Main API server
+    connections:
+      - node:
+          host: api.somewhere.at.example.com
+          port: 443
+          encrypt: true
+      - odbc:
+          servernode: api.somewhere.at.example.com:443
+          encrypt: true
+      - jdbc:
+          url: jdbc:sap://api.somewhere.at.example.com:443/?encrypt=true
+objects:
+  schemas:
+    FLIGHT_API:
+      tableOriented:
+        AGENCY:
+          x-sap-dpp-entity-semantics: "sap:DataSubject"
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: AGENCY_ID
+              x-sap-dpp-field-semantics: sap:DataSubjectID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(6)"
+              notNull: true
+            - name: NAME
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(80)"
+            - name: STREET
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(60)"
+            - name: POSTAL_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(10)"
+            - name: CITY
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: COUNTRY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+            - name: PHONE_NUMBER
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(30)"
+            - name: EMAIL_ADDRESS
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(256)"
+            - name: WEB_ADDRESS
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(256)"
+        AIRPORT:
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: AIRPORT_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+              notNull: true
+            - name: NAME
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: CITY
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: COUNTRY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+        BOOKING:
+          x-sap-dpp-entity-semantics: "sap:Other"
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: TRAVEL_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(8)"
+              notNull: true
+            - name: BOOKING_ID
+              x-sap-dpp-field-semantics: sap:ContractRelatedID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(4)"
+              notNull: true
+            - name: BOOKING_DATE
+              x-sap-dpp-field-semantics: sap:EndOfBusinessDate
+              type:
+                $ref: "#/components/types/atomic/DATE"
+            - name: CUSTOMER_ID
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(6)"
+            - name: CARRIER_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+            - name: CONNECTION_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(4)"
+            - name: FLIGHT_DATE
+              type:
+                $ref: "#/components/types/atomic/DATE"
+            - name: FLIGHT_PRICE
+              type:
+                $ref: "#/components/types/atomic/DECIMAL"
+            - name: CURRENCY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(5)"
+        CARRIER:
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: CARRIER_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+              notNull: true
+            - name: NAME
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: CURRENCY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(5)"
+        CONNECTION:
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: CARRIER_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+              notNull: true
+            - name: CONNECTION_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(4)"
+              notNull: true
+            - name: DEPARTURE_AIRPORT_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+            - name: DESTINATION_AIRPORT_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+            - name: DEPARTURE_TIME
+              type:
+                $ref: "#/components/types/atomic/TIME"
+            - name: ARRIVAL_TIME
+              type:
+                $ref: "#/components/types/atomic/TIME"
+            - name: DISTANCE
+              type:
+                $ref: "#/components/types/atomic/INTEGER"
+            - name: DISTANCE_UNIT
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+        CUSTOMER:
+          x-sap-dpp-entity-semantics: "sap:DataSubject"
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: CUSTOMER_ID
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(6)"
+              notNull: true
+            - name: FIRST_NAME
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: LAST_NAME
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: TITLE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(10)"
+            - name: STREET
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(60)"
+            - name: POSTAL_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(10)"
+            - name: CITY
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(40)"
+            - name: COUNTRY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+            - name: PHONE_NUMBER
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(30)"
+            - name: EMAIL_ADDRESS
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(256)"
+        FLIGHT:
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: CARRIER_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(3)"
+              notNull: true
+            - name: CONNECTION_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(4)"
+              notNull: true
+            - name: FLIGHT_DATE
+              type:
+                $ref: "#/components/types/atomic/DATE"
+              notNull: true
+            - name: PRICE
+              type:
+                $ref: "#/components/types/atomic/DECIMAL"
+            - name: CURRENCY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(5)"
+            - name: PLANE_TYPE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(10)"
+            - name: MAXIMUM_SEATS
+              type:
+                $ref: "#/components/types/atomic/INTEGER"
+            - name: OCCUPIED_SEATS
+              type:
+                $ref: "#/components/types/atomic/INTEGER"
+        TRAVEL:
+          x-sap-dpp-entity-semantics: "sap:Other"
+          kind: view
+          operations:
+            - select
+            - insert
+            - update
+            - delete
+          columns:
+            - name: TRAVEL_ID
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(8)"
+              notNull: true
+            - name: AGENCY_ID
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(6)"
+            - name: CUSTOMER_ID
+              x-sap-dpp-field-semantics: "sap:DataSubjectID"
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(6)"
+            - name: BEGIN_DATE
+              type:
+                $ref: "#/components/types/atomic/DATE"
+            - name: END_DATE
+              x-sap-dpp-field-semantics: "sap:EndOfBusinessDate"
+              type:
+                $ref: "#/components/types/atomic/DATE"
+            - name: BOOKING_FEE
+              type:
+                $ref: "#/components/types/atomic/DECIMAL"
+            - name: TOTAL_PRICE
+              type:
+                $ref: "#/components/types/atomic/DECIMAL"
+            - name: CURRENCY_CODE
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(5)"
+            - name: DESCRIPTION
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(1024)"
+            - name: STATUS
+              type:
+                $ref: "#/components/types/atomic/NVARCHAR(1)"
+components:
+  types:
+    atomic:
+      DATE:
+        atomic:
+          name: DATE
+      DECIMAL:
+        atomic:
+          name: DECIMAL
+      INTEGER:
+        atomic:
+          name: INTEGER
+      NVARCHAR(1):
+        atomic:
+          name: NVARCHAR
+          length: 1
+      NVARCHAR(3):
+        atomic:
+          name: NVARCHAR
+          length: 3
+      NVARCHAR(4):
+        atomic:
+          name: NVARCHAR
+          length: 4
+      NVARCHAR(5):
+        atomic:
+          name: NVARCHAR
+          length: 5
+      NVARCHAR(6):
+        atomic:
+          name: NVARCHAR
+          length: 6
+      NVARCHAR(8):
+        atomic:
+          name: NVARCHAR
+          length: 8
+      NVARCHAR(10):
+        atomic:
+          name: NVARCHAR
+          length: 10
+      NVARCHAR(30):
+        atomic:
+          name: NVARCHAR
+          length: 30
+      NVARCHAR(40):
+        atomic:
+          name: NVARCHAR
+          length: 40
+      NVARCHAR(60):
+        atomic:
+          name: NVARCHAR
+          length: 60
+      NVARCHAR(80):
+        atomic:
+          name: NVARCHAR
+          length: 80
+      NVARCHAR(256):
+        atomic:
+          name: NVARCHAR
+          length: 256
+      NVARCHAR(1024):
+        atomic:
+          name: NVARCHAR
+          length: 1024
+      TIME:
+        atomic:
+          name: TIME
+    table: {}
