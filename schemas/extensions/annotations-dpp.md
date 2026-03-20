@@ -95,4 +95,4 @@ Constraints:
 
 - Type: `array` of `string`
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
-- Description: Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+- Description: The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity. The strings must adhere to the format of an ORD ID corresponding to the concept name "dataCategory" introduced herein (refer to ORD Specification | Open Resource Discovery). The value should be constructed as follows: <ordId> := <namespace>.<conceptName>:<resourceName>.
