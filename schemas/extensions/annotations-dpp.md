@@ -1,5 +1,3 @@
-
-
 > <span className="feature-status-draft">DRAFT</span>
 
 # Data Protection and Privacy related Annotations
@@ -47,7 +45,7 @@ Constraints: OPTIONAL
 ### `x-sap-dpp-field-semantics`
 
 - Type: `string`
-- Used at: `objects:schemas:A_SCHEMA:tableOriented` 
+- Used at: `objects:schemas:A_SCHEMA:tableOriented`
 - Description: Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with `x-sap-dpp-field-semantics` need not be additionally annotated with `x-sap-dpp-is-potentially-personal`.
 - Allowed Values:
   - `sap:DataSubjectID`
@@ -59,7 +57,9 @@ Constraints: OPTIONAL
   - `sap:UserID`
   - `sap:EndOfBusinessDate`
   - `sap:BlockingDate`
+  - `sap:IsBlockedIndicator`
   - `sap:EndOfRetentionDate`
+  - `sap:DataCategoryID`
 
 Constraints: OPTIONAL
 
@@ -80,13 +80,19 @@ Constraints:
 - Used at: `objects:schemas:A_SCHEMA:tableOriented`
 - Description: Property contains potentially sensitive personal data.  Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
   
-  Examples of sensitive personal data:
-    - Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
-    - Personal data subject to professional secrecy.
-    - Personal data relating to criminal or administrative offenses.
-    - Personal data concerning insurances and bank or credit card accounts.
+- Examples of sensitive personal data:
+  - Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
+  - Personal data subject to professional secrecy.
+  - Personal data relating to criminal or administrative offenses.
+  - Personal data concerning insurances and bank or credit card accounts.
 
 Constraints:
 
 - OPTIONAL
 - Default: `TRUE`
+
+### `x-sap-dpp-related-data-category-id`
+
+- Type: `array` of `string`
+- Used at: `objects:schemas:A_SCHEMA:tableOriented`
+- Description: The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity. The strings must adhere to the format of an ORD ID corresponding to the concept name "dataCategory" introduced herein (refer to ORD Specification | Open Resource Discovery).
