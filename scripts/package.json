@@ -7,6 +7,6 @@
     "json-pointer": "0.6.2",
     "jsonpath-plus": "10.4.0",
     "node-dir": "0.1.17",
-    "yaml": "2.8.2"
+    "yaml": "2.8.3"
   }
 }
