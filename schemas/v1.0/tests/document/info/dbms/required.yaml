@@ -2,7 +2,7 @@ fail:
   - instance: /info/dbms
     schema: required
     detail: kind
-  - instance: /info/dbms
+  - instance: /info/foo
     schema: required
     detail: version
 
