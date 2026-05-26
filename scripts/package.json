@@ -8,5 +8,8 @@
     "jsonpath-plus": "10.4.0",
     "node-dir": "0.1.17",
     "yaml": "2.8.3"
+  },
+  "scripts": {
+    "preinstall": "echo 'error: npm scripts are enabled; disable scripts or use npm install --ignore-scripts'; exit 1"
   }
 }
