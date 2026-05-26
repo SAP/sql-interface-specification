@@ -25,7 +25,8 @@ jobs:
  
       - run: |
           cd ./scripts
-          npm install
+          # get dependencies, but do not run install scripts
+          npm install --ignore-scripts
           ./yaml2json < ../schemas/v1.0/schema.yaml > ../schemas/v1.0/schema.json
 
       - name: Publish package
