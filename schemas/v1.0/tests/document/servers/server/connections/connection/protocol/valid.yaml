@@ -17,4 +17,8 @@ servers:
           param1: value
           param2: 123
           param3: true
+      - arrowflight-sql:
+          param1: value
+          param2: 123
+          param3: true
 objects: ...
