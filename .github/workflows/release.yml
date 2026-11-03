@@ -21,7 +21,7 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Generate other schema file formats
-      - run: |
+        run: |
           cd ./scripts
           npm install --ignore-scripts
           ./yaml2json < ../schemas/v1.0/schema.yaml > ../schemas/v1.0/schema.json
