@@ -107,7 +107,7 @@ $defs:
   server-connection:
     type: object
     patternProperties:
-      '^(odbc|jdbc|node)$':
+      '^(odbc|jdbc|node|arrowflight-sql)$':
         type: object
         additionalProperties:
           anyOf:
